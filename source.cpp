@@ -90,7 +90,7 @@ vector<int> merge(vector<int> l, vector<int> r) {
 			j++;
  			}
 		else {
-			sorted[i] = r[k]; // or it r still has elements left
+			sorted[i] = r[k]; // or if r still has elements left
 			k++;
 		}
 	}
