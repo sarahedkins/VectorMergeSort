@@ -1,5 +1,9 @@
+// Given a list of unsorted lists and their size, return the sorted lists.
+
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -12,27 +16,49 @@ int main() {
 	// declarations & initialization
 	vector<int> testing;
 	int j = 10; // used to fill vector
-	vector<int> mySortedVector;
+	vector<int> sortedVector;
+	ifstream infile;
+	string filename = "unsorted.txt";
+	vector<int> aVector;
+	int lengthOfList = 0;
+	int holdInt = 0;
+	int i = 0; // iterator
+	int numLists = 1; // keeps track of number of lists in input file
 
-	// fill vector with values to be sorted
-	for (int i = 0; i < 10; i++){
-		testing.push_back(j);
-		j--;
+	// open file and check that it opens
+	infile.open("unsorted.txt");
+	if (!infile) {
+		cout << "Error opening " << filename;
+		system("pause");
+		return 0;
 	}
-	
-	// print out unsorted vectors
-	cout << "Unsorted vector is: ";
-	for (int k = 0; k < testing.size(); k++) {
-		cout << testing[k] << " ";
-	}
 
-	// sort
-	mySortedVector = mergeSort(testing);
+	// loop in the unsorted lists & print sorted lists
+	while (!infile.eof()){
+		i = 0;
+		infile >> lengthOfList; // first int is the length of the following unsorted list
+		aVector.resize(lengthOfList);
+		while (lengthOfList != 0) {
+			infile >> aVector[i];
+			lenghtOfList--;
+			i++;
+		}
+		// print out unsorted vectors
+		cout << endl << "Unsorted Vector #" << numLists <<  " is: ";
+		for (int k = 0; k < aVector.size(); k++) {
+			cout << aVetor[k] << " ";
+		}
 
-	// print sorted vector
-	cout << endl << "Sorted vector is: ";
-	for (int k = 0; k < mySortedVector.size(); k++){
-		cout << mySortedVector[k] << " ";
+		// sort
+		sortedVector = mergeSort(aVector);
+
+		// print sorted vector
+		cout << endl << "Sorted Vector #" << numLists << " is: ";
+		for (int k = 0; k < sortedVector.size(); k++){
+			cout << sortedVector[k] << " ";
+		}
+		numLists++;
+		cout << endl;
 	}
 
 	system("pause");
