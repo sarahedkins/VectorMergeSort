@@ -40,13 +40,13 @@ int main() {
 		aVector.resize(lengthOfList);
 		while (lengthOfList != 0) {
 			infile >> aVector[i];
-			lenghtOfList--;
+			lengthOfList--;
 			i++;
 		}
 		// print out unsorted vectors
 		cout << endl << "Unsorted Vector #" << numLists <<  " is: ";
 		for (int k = 0; k < aVector.size(); k++) {
-			cout << aVetor[k] << " ";
+			cout << aVector[k] << " ";
 		}
 
 		// sort
